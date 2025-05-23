@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>🎉 Happy Birthday Celebration 🎂</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: linear-gradient(to bottom right, #ffccf9, #ffffcc);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      overflow: hidden;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 4em;
+      margin-top: 30px;
+      color: #ff1493;
+      text-shadow: 3px 3px #ff69b4;
+      animation: rainbow 3s infinite;
+    }
+
+    @keyframes rainbow {
+      0% { color: red; }
+      25% { color: orange; }
+      50% { color: yellow; }
+      75% { color: green; }
+      100% { color: blue; }
+    }
+
+    .center-piece {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+
+    .gift-box {
+      width: 150px;
+      height: 150px;
+      background: #ff80ab;
+      border-radius: 15px;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+      margin: 0 auto;
+      cursor: pointer;
+      position: relative;
+      transition: transform 0.3s ease-in-out;
+    }
+
+    .gift-box:hover {
+      transform: scale(1.1);
+    }
+
+    .ribbon, .ribbon-horizontal {
+      position: absolute;
+      background: #d50000;
+    }
+
+    .ribbon {
+      width: 30px;
+      height: 150px;
+      left: 60px;
+    }
+
+    .ribbon-horizontal {
+      width: 150px;
+      height: 30px;
+      top: 60px;
+    }
+
+    .lights, .sparkles {
+      position: fixed;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 999;
+    }
+
+    .light, .spark {
+      position: absolute;
+      width: 15px;
+      height: 15px;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: flicker 1s infinite alternate;
+    }
+
+    .light {
+      background: white;
+      box-shadow: 0 0 10px white;
+    }
+
+    .spark {
+      background: linear-gradient(45deg, red, orange, yellow, green, blue, indigo, violet);
+      box-shadow: 0 0 15px white;
+      animation: sparkle 2s infinite;
+    }
+
+    @keyframes sparkle {
+      0% { transform: scale(1); opacity: 1; }
+      100% { transform: scale(1.5); opacity: 0; }
+    }
+
+    @keyframes flicker {
+      from { opacity: 0.4; }
+      to { opacity: 1; }
+    }
+
+    .balloon, .heart {
+      position: absolute;
+      border-radius: 50%;
+      animation: float 6s infinite ease-in-out;
+    }
+
+    .balloon {
+      width: 50px;
+      height: 70px;
+      background: radial-gradient(circle, #ffd700, #ffa500);
+    }
+
+    .heart {
+      background: red;
+      width: 25px;
+      height: 25px;
+      transform: rotate(-45deg);
+    }
+
+    .heart::before, .heart::after {
+      content: "";
+      position: absolute;
+      width: 25px;
+      height: 25px;
+      background: red;
+      border-radius: 50%;
+    }
+
+    .heart::before { top: -12px; left: 0; }
+    .heart::after { left: 12px; top: 0; }
+
+    @keyframes float {
+      0% {
+        transform: translateY(100vh) rotate(0deg);
+        opacity: 1;
+      }
+      100% {
+        transform: translateY(-100vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>🎊 Happy Birthday Madam Ji! 🎈</h1>
+  <div class="center-piece">
+    <div class="gift-box" onclick="releaseMagic()">
+      <div class="ribbon"></div>
+      <div class="ribbon-horizontal"></div>
+    </div>
+  </div>
+  <div class="lights"></div>
+  <div class="sparkles"></div>
+
+  <script>
+    function releaseMagic() {
+      for (let i = 0; i < 70; i++) {
+        const el = document.createElement('div');
+        el.classList.add(i % 2 === 0 ? 'balloon' : 'heart');
+        el.style.left = Math.random() * 100 + 'vw';
+        el.style.animationDuration = (Math.random() * 3 + 4) + 's';
+        document.body.appendChild(el);
+        setTimeout(() => el.remove(), 7000);
+      }
+
+      for (let i = 0; i < 30; i++) {
+        const light = document.createElement('div');
+        light.className = 'light';
+        light.style.top = Math.random() * 100 + 'vh';
+        light.style.left = Math.random() * 100 + 'vw';
+        document.querySelector('.lights').appendChild(light);
+        setTimeout(() => light.remove(), 5000);
+      }
+
+      for (let i = 0; i < 20; i++) {
+        const spark = document.createElement('div');
+        spark.className = 'spark';
+        spark.style.top = Math.random() * 100 + 'vh';
+        spark.style.left = Math.random() * 100 + 'vw';
+        document.querySelector('.sparkles').appendChild(spark);
+        setTimeout(() => spark.remove(), 4000);
+      }
+    }
+  </script>
+</body>
+</html>
